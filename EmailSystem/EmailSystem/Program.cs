@@ -1,4 +1,5 @@
 using EmailSystem.DataBase;
+using EmailSystem.Services.EmailService;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmailSystem
@@ -15,6 +16,17 @@ namespace EmailSystem
                 })
                 .AddMvc()
                 .AddRazorRuntimeCompilation();
+
+            builder.Services.AddControllers();
+
+            var emailConfig = builder.Configuration
+            .GetSection("EmailConfiguration")
+            .Get<EmailConfiguration>();
+
+            builder.Services.AddSingleton(emailConfig);
+
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
+
 
             var app = builder.Build();
 
