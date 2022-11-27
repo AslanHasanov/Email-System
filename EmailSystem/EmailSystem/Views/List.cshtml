@@ -1,0 +1,39 @@
+﻿@using EmailSystem.ViewModels;
+@model List<ListViewModel>
+
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-controller="email" asp-action="add" class="btn btn-success">Add Email</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(b=>b.GetEnumerator().Current.From)</th>
+                <th scope="col">@Html.DisplayNameFor(b=>b.GetEnumerator().Current.To)</th>
+                <th scope="col">@Html.DisplayNameFor(b=>b.GetEnumerator().Current.Tittle)</th>
+                <th scope="col">@Html.DisplayNameFor(b=>b.GetEnumerator().Current.Message)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var email in Model)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@email.From</td>
+                    <td>@email.To</td>
+                    <td>@email.Tittle</td>
+                    <td>@email.Message</td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>

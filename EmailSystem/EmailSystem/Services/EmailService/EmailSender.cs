@@ -14,15 +14,15 @@ namespace EmailSystem.Services.EmailService
 
         public void SendEmail(Message message)
         {
-            var emailMessage = CreateEmailMassage(message);
+            var emailMessage = CreateEmailMessage(message);
 
-            SendEmail(emailMessage);
+            Send(emailMessage);
         }
 
         private MimeMessage CreateEmailMessage(Message message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress(_emailConfig.From));
+            emailMessage.From.Add(new MailboxAddress(string.Empty, _emailConfig.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject=message.Subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
